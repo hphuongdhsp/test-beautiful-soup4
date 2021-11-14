@@ -8,7 +8,6 @@ Created on Thu Nov 11 14:47:39 2021
 import requests
 from bs4 import BeautifulSoup
 import os
-import tqdm
 import urllib.request
 
 
