@@ -258,4 +258,4 @@ for a in soup.find_all('a', href=True):
 
 Từ những lệnh cở bản của *BeautifulSoup* ở mục 4 và thuật toán được xây dựng ở mục 3. Chúng ta xây dựng hàm trên python để craping toàn bộ ảnh bệnh từ trang web http://www.globalskinatlas.com/. 
 
-Source code ở: []()
+Source code ở [link](https://github.com/hphuongdhsp/test-beautiful-soup4/blob/main/src/main.py)
