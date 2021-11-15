@@ -16,11 +16,8 @@ Bài viết gồm các ý chính chính sau:
     - <a id='#3-2'>3.2. Cách download ảnh thủ công </a> 
     - <a id='#3-2'>3.3. Xây dựng thuật toán từ thác tác down ảnh thủ công  </a> 
 - <a href='#4'>4. Giới thiệu gói thư viện beautiful soup </a>
-    - <a id='#4-1'>3.1. </a>
-    - <a id='#4-2'>3.2. Xây dựng mô hình</a> 
 - <a href='#4'>5. Hoàn thành code </a>
-    - <a id='#4-1'>3.1.  </a>
-    - <a id='#4-2'>3.2. Xây dựng mô hình</a> 
+
 
 
 # <a id='1'>1.Giới thiệu về Web Scaping</a>
@@ -48,7 +45,7 @@ Ví dụ: Khi chúng ta vào trình duyệt Chrome, chúng ta muốn try tập v
 
 Để hiểu rõ cấu trúc một trang web, chúng ta sẽ tìm hiểu sâu file HTML. Ở các trình duyệt. Để hiển thị cấu trúc file HTML, chúng ta bấm phím *F12*. 
 
-## <a id='2.1'>2.2 Tổng quan HTML</a>
+## <a id='2.2'>2.2 Tổng quan HTML</a>
 
 Cấu trúc cơ bản của trang HTML có dạng như sau: 
 
@@ -69,7 +66,7 @@ Cấu trúc cơ bản của trang HTML có dạng như sau:
 </html>
 ```
 Ở phần tiếp theo chúng ta sẽ giới thiệu về thẻ liên kết \<a\>, một những phần quan trọng nhất để thực hành đào ảnh. 
-## <a id='2.1.1'>2.2.1  Thẻ liên kết *a* 
+## <a id='2.2.1'>2.2.1  Thẻ liên kết *a* 
 
     - Thẻ liên kết \<a\> \</a> dùng để tạo một liên kết từ trang web này sang trang web khác, từ vị trí này sang vị trí khác hay dùng để mở ra một object nào đó (có thể là file words, ảnh, excel, pdf, mp3, movie,...), thẻ này có một thuộc tính bắt buộc:
 
@@ -85,7 +82,7 @@ Ví dụ: Trong trang web [http://www.globalskinatlas.com/diagdetail.cfm?id=91](
     - Bằng truy cập trang web, ta thấy được liên kết ở tag này là: http://www.globalskinatlas.com/imagedetail.cfm?TopLevelid=170&ImageID=462&did=8 
     - Text để mô tả tag này là *View*
   
-## <a id='2.1.2'>2.2.2  Thẻ liên kết *img* 
+## <a id='2.2.2'>2.2.2  Thẻ liên kết *img* 
 
     - Thẻ hiển thị một image \<*img*/> dùng để nhúng một ảnh thông qua thuộc tính src, thẻ này có 2 thuộc tính bắt buộc:
     - src: Chứa đường dẫn tham chiếu tới image.
@@ -184,18 +181,81 @@ BeautifulSoup là một gói thư viện của Python nhằm giúp người dùn
 
 Trong khuôn khô bài viết, chúng ta sẽ tìm hiểu những lệnh cơ bản sau: 
 
+### Lệnh khởi tạo soup
 ```
 r = requests.get(web_url)
 soup = BeautifulSoup(r.content, "html.parser")
 ```
-
+### Lệnh lấy tất cả \<a> tag 
 Lệnh trên nhằm tạo món soup dựa trên nguyên liệu trang web *web_url*, giúp bạn dễ dàng hơn trong việc truy cập dữ liệu của file HTML *web_url*
 
 ```
-links = soup.findall("a")
+links = soup.findall("a", href = Trues)
+```
+### Lấy url ở trong một tag 
+Lệnh giúp bạn lấy url trong một tag <*a*></*a*> từ món soup có sẵn. 
+
+```
+html_doc = """
+<html><head><title>The Dormouse's story</title></head>
+<body>
+<p class="title"><b>The Dormouse's story</b></p>
+
+<p class="story">Once upon a time there were three little sisters; and their names were
+<a href="/redirect?Id=f%2fKgPq4IDV0SyEq0zfYr0L1x0DM4mpSt97%2ftYgbxlC2B7n4pvJNhhvRwo8bxiO4B" class="sister" id="link1">Elsie</a>,
+<a href="/redirect?Id=f%2fKgPq4IDV0SyEq0zfYr0OPun6GIXb9bh0UOloN9WCYbJtHZQd%2fvB08D2UeudkPP" class="sister" id="link2">Lacie</a> and
+<a href="/redirect?Id=f%2fKgPq4IDV0SyEq0zfYr0LirHL60gbBHH3VIishi9CqgtHAKmbGoKNvFheNkumnh" class="sister" id="link3">Tillie</a>;
+and they lived at the bottom of a well.</p>
+
+<p class="story">...</p>
+"""
+
+from bs4 import BeautifulSoup
+soup = BeautifulSoup(html_doc, 'html.parser')
+
+for a in soup.find_all('a', href=True):
+    print ("Found the URL:", a['href'])
 ```
 
-Lệnh giúp bạn lấy các tag <*a*></*a*> từ món soup có sẵn.  Ví dụ
+Out put trả ra:
 
+```
+Found the URL: /redirect?Id=f%2fKgPq4IDV0SyEq0zfYr0L1x0DM4mpSt97%2ftYgbxlC2B7n4pvJNhhvRwo8bxiO4B
+Found the URL: /redirect?Id=f%2fKgPq4IDV0SyEq0zfYr0OPun6GIXb9bh0UOloN9WCYbJtHZQd%2fvB08D2UeudkPP
+Found the URL: /redirect?Id=f%2fKgPq4IDV0SyEq0zfYr0LirHL60gbBHH3VIishi9CqgtHAKmbGoKNvFheNkumnh
+```
+### Lấy text ở trong một tag 
 
+Để lấy một tag trong một tag từ soup, chúng ta sử dụng lệnh: 
+```
+tag.text.strip()
+```
+Ví dụ 
 
+```
+html_doc = """
+<html><head><title>The Dormouse's story</title></head>
+<body>
+<p class="title"><b>The Dormouse's story</b></p>
+
+<p class="story">Once upon a time there were three little sisters; and their names were
+<a href="/redirect?Id=f%2fKgPq4IDV0SyEq0zfYr0L1x0DM4mpSt97%2ftYgbxlC2B7n4pvJNhhvRwo8bxiO4B" class="sister" id="link1">Elsie</a>,
+<a href="/redirect?Id=f%2fKgPq4IDV0SyEq0zfYr0OPun6GIXb9bh0UOloN9WCYbJtHZQd%2fvB08D2UeudkPP" class="sister" id="link2">Lacie</a> and
+<a href="/redirect?Id=f%2fKgPq4IDV0SyEq0zfYr0LirHL60gbBHH3VIishi9CqgtHAKmbGoKNvFheNkumnh" class="sister" id="link3">Tillie</a>;
+and they lived at the bottom of a well.</p>
+
+<p class="story">...</p>
+"""
+
+from bs4 import BeautifulSoup
+soup = BeautifulSoup(html_doc, 'html.parser')
+
+for a in soup.find_all('a', href=True):
+    print ("Found the text :", a.text.strip())
+```
+
+# <a id='5'>5. Hoàn thành code craping dữ liệu cho bài toán</a>
+
+Từ những lệnh cở bản của *BeautifulSoup* ở mục 4 và thuật toán được xây dựng ở mục 3. Chúng ta xây dựng hàm trên python để craping toàn bộ ảnh bệnh từ trang web http://www.globalskinatlas.com/. 
+
+Source code ở: []()
