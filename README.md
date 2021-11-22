@@ -33,25 +33,29 @@ Trước khi đi sâu vào làm sao có thể download tất cả dữ liệu t�
 
 ## <a id='2.1'>2.1 Tổng quan HTML, CSS</a>
 
-Khi chúng ta truy cập một trang web, trình duyệt web (Firefox, Chrome) đưa ra yêu cầu đến máy chủ của trang web. Yêu cầu này được gọi là yêu cầu GET, sau đó chúng ta nhận được thông tin từ máy chủ. Nguồn thông tin từ máy chủ sẽ vẫn được trả lại thông tin gồm những tập file. Nhờ trình duyệt web, các tập này sẽ hiển thị dứoi dạng web. Cấu thành của tập để trình duyệt web có thể đọc một trang web bao gồm:
+Khi chúng ta truy cập một trang web, trình duyệt web (`Firefox`, `Chrome`) đưa ra yêu cầu đến máy chủ của trang web. Yêu cầu này được gọi là yêu cầu `GET`, sau đó chúng ta nhận được thông tin từ máy chủ. Nguồn thông tin từ máy chủ sẽ vẫn được trả lại thông tin gồm những tập file. Nhờ trình duyệt web, các tập này sẽ hiển thị dứoi dạng web. Cấu thành của tập để trình duyệt web có thể đọc một trang web bao gồm:
 
-HTML - nội dung chính của trang.
-CSS - File này hỗ trợ HTML để hiển thi web đẹp hơn.
-JS - Các tệp Javascript thêm tính tương tác cho các trang web.
-Hình ảnh - các định dạng hình ảnh, chẳng hạn như JPG và PNG, cho phép các trang web hiển thị hình ảnh.
+- HTML - nội dung chính của trang.
+
+- CSS - File này hỗ trợ HTML để hiển thi web đẹp hơn.
+
+- Javascript - Các tệp Javascript thêm tính tương tác cho các trang web.
+
+- Hình ảnh - các định dạng hình ảnh, chẳng hạn như JPG và PNG, cho phép các trang web hiển thị hình ảnh.
 Sau khi trình duyệt của chúng tôi nhận được tất cả các tệp, nó sẽ hiển thị trang và hiển thị cho chúng tôi.
 
 Ví dụ: Khi chúng ta vào trình duyệt Chrome, chúng ta muốn try tập vào trang http://www.globalskinatlas.com/diagindex.cfm , khi đó máy chủ sẽ trả lại một tập, tập dữ liệu này gồm các file (html, css, javascript,), các file này sẽ được gửi trực tiếp về Chrome, thông qua trình duyệt, tất cả các tệp này sẽ tạp nên một trang web.  
 
-Để hiểu rõ cấu trúc một trang web, chúng ta sẽ tìm hiểu sâu file HTML. Ở các trình duyệt. Để hiển thị cấu trúc file HTML, chúng ta bấm phím *F12*. 
+Để hiểu rõ cấu trúc một trang web, chúng ta sẽ tìm hiểu sâu file `HTML`. Ở các trình duyệt. Để hiển thị cấu trúc file HTML, chúng ta bấm phím `F12`. 
 
 ## <a id='2.2'>2.2 Tổng quan HTML</a>
 
 Cấu trúc cơ bản của trang HTML có dạng như sau: 
 
-    - <!Doctype>: Phần khai báo chuẩn của html hay xhtml.
-    - <head></head>: Phần khai báo ban đầu, khai báo về meta, title, css, javascript…
-    - <body></body>: Phần chứa nội dung của trang web, nơi hiển thị nội dung.
+   - <!Doctype>: Phần khai báo chuẩn của html hay xhtml.
+   - <head></head>: Phần khai báo ban đầu, khai báo về meta, title, css, javascript…
+   - <body></body>: Phần chứa nội dung của trang web, nơi hiển thị nội dung.
+   
   
 ```
 <!DOCTYPE html>
@@ -68,7 +72,7 @@ Cấu trúc cơ bản của trang HTML có dạng như sau:
 Ở phần tiếp theo chúng ta sẽ giới thiệu về thẻ liên kết \<a\>, một những phần quan trọng nhất để thực hành đào ảnh. 
 ## <a id='2.2.1'>2.2.1  Thẻ liên kết *a* 
 
-    - Thẻ liên kết \<a\> \</a> dùng để tạo một liên kết từ trang web này sang trang web khác, từ vị trí này sang vị trí khác hay dùng để mở ra một object nào đó (có thể là file words, ảnh, excel, pdf, mp3, movie,...), thẻ này có một thuộc tính bắt buộc:
+    - Thẻ liên kết `\<a\> \</a>`dùng để tạo một liên kết từ trang web này sang trang web khác, từ vị trí này sang vị trí khác hay dùng để mở ra một object nào đó (có thể là file words, ảnh, excel, pdf, mp3, movie,...), thẻ này có một thuộc tính bắt buộc:
 
     - href: Chứa đường dẫn cụ thể tới mục tiêu liên kết.
 
