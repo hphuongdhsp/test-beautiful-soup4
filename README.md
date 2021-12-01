@@ -22,9 +22,9 @@ Bài viết gồm các ý chính chính sau:
 
 # <a id='1'>1.Giới thiệu về Web Scaping</a>
 
-Internet có nguồn dữ liệu khổng lồ, dữ liệu mà chúng ta hoàn toàn có thể truy cập bằng cách sử dụng web cùng một công cụ lập trình (Python, C++). Web Scaping là tác vụ download tất cả thông tin liên quan từ một trang web cố định. Ví dụ chúng ta muốn download tất cả các ảnh từ trang web http://www.globalskinatlas.com/diagindex.cfm để làm phong phú kho dữ liệu. 
+Internet có nguồn dữ liệu khổng lồ, dữ liệu mà chúng ta hoàn toàn có thể truy cập bằng cách sử dụng web cùng một công cụ lập trình (`Python`, `C++`). Web Scaping là tác vụ download tất cả thông tin liên quan từ một trang web cố định. Ví dụ chúng ta muốn download tất cả các ảnh từ trang web `http://www.globalskinatlas.com/diagindex.cfm` để làm phong phú kho dữ liệu. 
 
-Một số trang web cung cấp cho chúng ta thông qua một API (Application Programming Interface), một số trang web khác có thể co ngừoi dùng lấy dữ liệu thông qua database có sẵn. Ví dụ khi bạn muốn download ảnh từ một trang web, bạn click vào ảnh trên website, từ website sẽ đưa bạn tới một trang web khác, nơi đó có lưu trữ ảnh trực tiếp trên server. 
+Một số trang web cung cấp cho chúng ta thông qua một API (`Application Programming Interface`), một số trang web khác có thể co người dùng lấy dữ liệu thông qua database có sẵn. Ví dụ khi bạn muốn download ảnh từ một trang web, bạn click vào ảnh trên website, từ website sẽ đưa bạn tới một trang web khác, nơi đó có lưu trữ ảnh trực tiếp trên server. 
 
 # <a id='2'>2. Tổng quan cấu trúc web</a>
 
@@ -33,29 +33,25 @@ Trước khi đi sâu vào làm sao có thể download tất cả dữ liệu t�
 
 ## <a id='2.1'>2.1 Tổng quan HTML, CSS</a>
 
-Khi chúng ta truy cập một trang web, trình duyệt web (`Firefox`, `Chrome`) đưa ra yêu cầu đến máy chủ của trang web. Yêu cầu này được gọi là yêu cầu `GET`, sau đó chúng ta nhận được thông tin từ máy chủ. Nguồn thông tin từ máy chủ sẽ vẫn được trả lại thông tin gồm những tập file. Nhờ trình duyệt web, các tập này sẽ hiển thị dứoi dạng web. Cấu thành của tập để trình duyệt web có thể đọc một trang web bao gồm:
+Khi chúng ta truy cập một trang web, trình duyệt web (`Firefox`, `Chrome`) đưa ra yêu cầu đến máy chủ của trang web. Yêu cầu này được gọi là yêu cầu GET, sau đó chúng ta nhận được thông tin từ máy chủ. Nguồn thông tin từ máy chủ sẽ vẫn được trả lại thông tin gồm những tập file. Nhờ trình duyệt web, các tập này sẽ hiển thị dứoi dạng web. Cấu thành của tập để trình duyệt web có thể đọc một trang web bao gồm:
 
-- HTML - nội dung chính của trang.
-
-- CSS - File này hỗ trợ HTML để hiển thi web đẹp hơn.
-
-- Javascript - Các tệp Javascript thêm tính tương tác cho các trang web.
-
-- Hình ảnh - các định dạng hình ảnh, chẳng hạn như JPG và PNG, cho phép các trang web hiển thị hình ảnh.
+`HTML` - nội dung chính của trang.
+`CSS` - File này hỗ trợ HTML để hiển thi web đẹp hơn.
+`JS` - Các tệp Javascript thêm tính tương tác cho các trang web.
+Hình ảnh - các định dạng hình ảnh, chẳng hạn như JPG và PNG, cho phép các trang web hiển thị hình ảnh.
 Sau khi trình duyệt của chúng tôi nhận được tất cả các tệp, nó sẽ hiển thị trang và hiển thị cho chúng tôi.
 
-Ví dụ: Khi chúng ta vào trình duyệt Chrome, chúng ta muốn try tập vào trang http://www.globalskinatlas.com/diagindex.cfm , khi đó máy chủ sẽ trả lại một tập, tập dữ liệu này gồm các file (html, css, javascript,), các file này sẽ được gửi trực tiếp về Chrome, thông qua trình duyệt, tất cả các tệp này sẽ tạp nên một trang web.  
+Ví dụ: Khi chúng ta vào trình duyệt Chrome, chúng ta muốn try tập vào trang `http://www.globalskinatlas.com/diagindex.cfm` , khi đó máy chủ sẽ trả lại một tập, tập dữ liệu này gồm các file (html, css, javascript,), các file này sẽ được gửi trực tiếp về Chrome, thông qua trình duyệt, tất cả các tệp này sẽ tạp nên một trang web.  
 
-Để hiểu rõ cấu trúc một trang web, chúng ta sẽ tìm hiểu sâu file `HTML`. Ở các trình duyệt. Để hiển thị cấu trúc file HTML, chúng ta bấm phím `F12`. 
+Để hiểu rõ cấu trúc một trang web, chúng ta sẽ tìm hiểu sâu file HTML. Ở các trình duyệt. Để hiển thị cấu trúc file HTML, chúng ta bấm phím *F12*. 
 
 ## <a id='2.2'>2.2 Tổng quan HTML</a>
 
 Cấu trúc cơ bản của trang HTML có dạng như sau: 
 
-   - <!Doctype>: Phần khai báo chuẩn của html hay xhtml.
-   - <head></head>: Phần khai báo ban đầu, khai báo về meta, title, css, javascript…
-   - <body></body>: Phần chứa nội dung của trang web, nơi hiển thị nội dung.
-   
+    - <!Doctype>: Phần khai báo chuẩn của html hay xhtml.
+    - <head></head>: Phần khai báo ban đầu, khai báo về meta, title, css, javascript…
+    - <body></body>: Phần chứa nội dung của trang web, nơi hiển thị nội dung.
   
 ```
 <!DOCTYPE html>
@@ -70,11 +66,10 @@ Cấu trúc cơ bản của trang HTML có dạng như sau:
 </html>
 ```
 Ở phần tiếp theo chúng ta sẽ giới thiệu về thẻ liên kết \<a\>, một những phần quan trọng nhất để thực hành đào ảnh. 
-## <a id='2.2.1'>2.2.1  Thẻ liên kết *a* 
+## <a id='2.2.1'>2.2.1  Thẻ liên kết `a` 
 
-    - Thẻ liên kết `\<a\> \</a>`dùng để tạo một liên kết từ trang web này sang trang web khác, từ vị trí này sang vị trí khác hay dùng để mở ra một object nào đó (có thể là file words, ảnh, excel, pdf, mp3, movie,...), thẻ này có một thuộc tính bắt buộc:
-
-    - href: Chứa đường dẫn cụ thể tới mục tiêu liên kết.
+- Thẻ liên kết  `\<a\> \</a>` dùng để tạo một liên kết từ trang web này sang trang web khác, từ vị trí này sang vị trí khác hay dùng để mở ra một object nào đó (có thể là file words, ảnh, excel, pdf, mp3, movie,...), thẻ này có một thuộc tính bắt buộc.
+- href: Chứa đường dẫn cụ thể tới mục tiêu liên kết.
 
 Ví dụ: Trong trang web [http://www.globalskinatlas.com/diagdetail.cfm?id=91](http://www.globalskinatlas.com/diagdetail.cfm?id=91),  khi chúng ta sử dụng phím f12, một trong những tag  \<a\> \</a\> có dạng như sau
 
@@ -86,14 +81,14 @@ Ví dụ: Trong trang web [http://www.globalskinatlas.com/diagdetail.cfm?id=91](
     - Bằng truy cập trang web, ta thấy được liên kết ở tag này là: http://www.globalskinatlas.com/imagedetail.cfm?TopLevelid=170&ImageID=462&did=8 
     - Text để mô tả tag này là *View*
   
-## <a id='2.2.2'>2.2.2  Thẻ liên kết *img* 
+## <a id='2.2.2'>2.2.2  Thẻ liên kết `img`
 
-    - Thẻ hiển thị một image \<*img*/> dùng để nhúng một ảnh thông qua thuộc tính src, thẻ này có 2 thuộc tính bắt buộc:
-    - src: Chứa đường dẫn tham chiếu tới image.
-    - alt: Được sử dụng như một văn bản thay thế khi image không hiển thị (hoặc không có sẵn).
+- Thẻ hiển thị một image \<*img*/> dùng để nhúng một ảnh thông qua thuộc tính src, thẻ này có 2 thuộc tính bắt buộc:
+- src: Chứa đường dẫn tham chiếu tới image.
+- alt: Được sử dụng như một văn bản thay thế khi image không hiển thị (hoặc không có sẵn).
   
-Cấu trúc của thẻ <*img*> không có sử dụng thẻ đóng (không dùng <*img*></*img*>), mà sử dụng ký tự kết thúc là một khoảng trắng và ký tự "/".
-Tham khảo thêm về thẻ <*img*/>.
+Cấu trúc của thẻ `<img>` không có sử dụng thẻ đóng (không dùng `<img></img>`), mà sử dụng ký tự kết thúc là một khoảng trắng và ký tự "/".
+Tham khảo thêm về thẻ `<img/>`.
 # <a id='3'> 3.Bài toán cụ thể: craping ảnh từ trang web: http://www.globalskinatlas.com/diagindex.cfm</a>
 
 Ở phần này chúng ta sẽ đi sâu vào phân tích cụ thể và định hướng hướng làm. 
@@ -104,13 +99,11 @@ Nhiệm vụ xuất phát của bài toán xuất phát từ nhu cầu thu thậ
 
 
 ## <a id='3.1'> 3.1 Cấu trúc của trang web</a>
-Chúng ta cùng xem xét cấu trúc của trang web. Khi thực hiện vào trang web, màn hình sẽ hiện thị như ảnh bên dưới. Chúng ta có thể thấy file được có rất nhiều tag <*a*></*a*>, mỗi tag tương ứng với một bệnh. 
+Chúng ta cùng xem xét cấu trúc của trang web. Khi thực hiện vào trang web, màn hình sẽ hiện thị như ảnh bên dưới. Chúng ta có thể thấy file được có rất nhiều tag `<a></a>`, mỗi tag tương ứng với một bệnh. 
 
-
-
+```
 <img align="center" width="600"  src="./imgs/craping_web.png">
-
-
+```
 
 Bấm phím f12 để thấy được cấu trúc của trang web. Mỗi tag bệnh sẽ tương ứng với
 
@@ -118,16 +111,17 @@ Bấm phím f12 để thấy được cấu trúc của trang web. Mỗi tag b�
 <a href="diagdetail.cfm?id=653"></a>
 ```
 
-Nếu click vào một tag, sẽ đưa chúng ta tới một trang web mới, ví dụ ở đây chúng ta click vào *Ecthyma*, chúng ta được tới trang web http://www.globalskinatlas.com/diagdetail.cfm?id=653 . 
+Nếu click vào một tag, sẽ đưa chúng ta tới một trang web mới, ví dụ ở đây chúng ta click vào *Ecthyma*, chúng ta được tới trang web `http://www.globalskinatlas.com/diagdetail.cfm?id=653` . 
 
-Nhận thấy rằng diagdetail.cfm?id=653 sẽ là tương ứng với bệnh Ezthyma. Và id *653* sẽ tương ứng với mã bệnh *Ecthyma*. Dispay của trang web sẽ có dạng hình như sau 
-
+Nhận thấy rằng `diagdetail.cfm?id=653` sẽ là tương ứng với bệnh Ezthyma. Và id `653` sẽ tương ứng với mã bệnh `Ecthyma`. Dispay của trang web sẽ có dạng hình như sau 
+```
 <img align="center" width="600"  src="./imgs/Ezthyma.png">
-
+```
 
 Khi click vào View ở góc cuối cùng, chúng ta sẽ được tới một trang web mới : http://www.globalskinatlas.com/imagedetail.cfm?TopLevelid=1099&ImageID=2615&did=6
 
-Trang web mới này được gắn ở href của một tag <*a*></*a*> của trang web http://www.globalskinatlas.com/diagdetail.cfm?id=653 , cụ thể  nội dung của tag <*a*></*a*>: 
+Trang web mới này được gắn ở href của một tag `<a></a>` của trang web http://www.globalskinatlas.com/diagdetail.cfm?id=653 , cụ thể  nội dung của tag `<a></a>`: 
+
 
 ```
 <a href="imagedetail.cfm?TopLevelid=1099&amp;ImageID=2615&amp;did=6">View</a>
@@ -137,14 +131,15 @@ Có thể thấy "imagedetail.cfm?TopLevelid=1099&amp;ImageID=2615&amp;did=6" l�
 
 Hiện thị của trang web sẽ có dạng như sau 
 
+```
 <img align="center" width="600"  src="./imgs/inside_ezthyma.png">
-
+```
 
 Ở trang web này, khi nhấp chuột phải, chúng ta hoàn toàn có thể download ảnh thủ công. Nhưng khi tiến hành download ảnh, chúng ta nhận ra rằng, chỉ có ảnh ở trung tâm có size ảnh lớn, những ảnh nhỏ hơn sẽ có size nhỏ hơn. 
 Vì vậy chúng ta sẽ tiến hành download ảnh ở trung tâm, còn với mỗi ảnh nhỏ ở dưới, chúng ta sẽ nhấn click chuột vào ảnh, ví dụ chúng ta sẽ click vào ảnh nhỏ đầu tiên, từ link ảnh nhỏ sẽ đưa tới trang web có display như sau 
-
+```
 <img align="center" width="600"  src="./imgs/inside2ezthyma.png">
- 
+```
 Chúng ta sẽ tiếp tục download ảnh ở trung tâm và lưu ở thư mục bệnh. 
 
 
@@ -197,7 +192,7 @@ Lệnh trên nhằm tạo món soup dựa trên nguyên liệu trang web *web_ur
 links = soup.findall("a", href = Trues)
 ```
 ### Lấy url ở trong một tag 
-Lệnh giúp bạn lấy url trong một tag <*a*></*a*> từ món soup có sẵn. 
+Lệnh giúp bạn lấy url trong một tag `<a></a>` từ món soup có sẵn. 
 
 ```
 html_doc = """
